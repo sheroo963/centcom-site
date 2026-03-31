@@ -1,19 +1,26 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { Helmet } from "react-helmet-async";
+import serviceCloudImage from "../assets/service-cloud.jpg";
+import serviceSupportImage from "../assets/service-support.jpg";
+import serviceNetworkImage from "../assets/service-network.jpg";
+import serviceDevelopmentImage from "../assets/service-development.jpg";
+import { submitContactForm } from "../utils/submitContactForm";
 
 export default function HomePage() {
   const [formData, setFormData] = useState({
     name: "",
-    jobRole: "",
     mobile: "",
     email: "",
     comment: "",
   });
   const [formStatus, setFormStatus] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const serviceCategories = [
     {
       title: "Microsoft Cloud & Modern Workplace",
+      image: serviceCloudImage,
       description:
         "Modern Microsoft cloud services designed to improve collaboration, security, automation and device management.",
       items: [
@@ -31,6 +38,7 @@ export default function HomePage() {
     },
     {
       title: "IT Support & Cloud Transformation",
+      image: serviceSupportImage,
       description:
         "End-to-end support services for businesses and education, from daily helpdesk needs to infrastructure and cloud migration projects.",
       items: [
@@ -45,6 +53,7 @@ export default function HomePage() {
     },
     {
       title: "Networks, Connectivity & Infrastructure",
+      image: serviceNetworkImage,
       description:
         "Reliable infrastructure services covering networking, connectivity, structured cabling and communications systems.",
       items: [
@@ -58,6 +67,7 @@ export default function HomePage() {
     },
     {
       title: "Development & Specialist Solutions",
+      image: serviceDevelopmentImage,
       description:
         "Custom digital solutions and specialist systems to support operational efficiency, security and business growth.",
       items: [
@@ -107,7 +117,7 @@ export default function HomePage() {
     },
     {
       quote:
-        "Their cybersecurity audit identified critical vulnerabilities we didn’t know existed. We achieved Cyber Essentials certification within weeks.",
+        "Their cybersecurity audit identified critical vulnerabilities we didn't know existed. We achieved Cyber Essentials certification within weeks.",
       name: "Operations Manager",
       company: "Healthcare Provider, Berkshire",
     },
@@ -164,57 +174,108 @@ export default function HomePage() {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setFormStatus(
-      "Thank you. Your enquiry has been recorded. Connect this form to your backend or email service to receive submissions."
-    );
-    setFormData({
-      name: "",
-      jobRole: "",
-      mobile: "",
-      email: "",
-      comment: "",
-    });
+    setIsSubmitting(true);
+    setFormStatus("Sending your enquiry...");
+
+    try {
+      const data = await submitContactForm(event.target, {
+        subject: "New homepage enquiry from centcom.co.uk",
+        fromName: "Centcom Systems Homepage Contact Form",
+      });
+
+      if (data.success) {
+        setFormStatus("Thank you. Your enquiry has been sent successfully.");
+        setFormData({
+          name: "",
+          mobile: "",
+          email: "",
+          comment: "",
+        });
+        event.target.reset();
+      } else {
+        setFormStatus("Sorry, there was a problem sending your enquiry. Please try again.");
+      }
+    } catch (error) {
+      setFormStatus("Sorry, there was a problem sending your enquiry. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <>
-      <section id="home" className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.16),transparent_35%)]" />
-        <div className="relative mx-auto max-w-7xl px-6 py-24">
+      <Helmet>
+        <title>Managed IT Support in London, Slough & Berkshire | Centcom Systems</title>
+        <meta
+          name="description"
+          content="Centcom Systems provides managed IT support in London, Slough and Berkshire, including Microsoft 365, Azure, Intune, cybersecurity, cloud services and support for businesses and schools."
+        />
+      </Helmet>
+
+      <section id="home" className="relative overflow-hidden border-b border-white/10">
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:Redirect/file/London_Skyline_(125508655).jpeg"
+          alt="London skyline representing Centcom Systems managed IT support services"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,6,23,0.9)_0%,rgba(2,6,23,0.8)_38%,rgba(2,6,23,0.55)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(14,165,233,0.16),transparent_30%)]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/60 to-transparent" />
+
+        <div className="relative mx-auto max-w-7xl px-6 py-24 lg:py-32">
           <div className="max-w-4xl">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">
-              Award-Winning Managed IT Support in the UK
-            </p>
-            <h1 className="text-4xl font-bold leading-tight md:text-6xl">
-  Managed IT Support in Slough, London & Across the UK for Businesses & Schools
+            <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-100 backdrop-blur-sm">
+              <span className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(103,232,249,0.9)]" />
+              Managed IT Support in London, Slough and Berkshire
+            </div>
+
+            <h1 className="mt-8 max-w-4xl text-5xl font-semibold leading-[1.05] text-white md:text-6xl xl:text-7xl">
+              Managed IT support in London, Slough and Berkshire for businesses and schools.
             </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
-              Proactive, reliable IT services for businesses and education. From Microsoft cloud
-              technologies and cybersecurity to support, infrastructure and development services, we
-              help organisations stay secure, productive and ready to grow.
-            </p>
-            <p className="mt-6 max-w-3xl text-base leading-7 text-slate-400">
-              Centcom Systems provides managed IT support in Slough, Berkshire, London and across
-              the UK. We specialise in supporting schools, multi-academy trusts and businesses with
-              proactive IT management, Microsoft 365, Azure, Intune, cloud migration,
-              cybersecurity, infrastructure services and dependable day-to-day support.
+
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-200 md:text-xl">
+              Centcom Systems provides premium managed IT support, Microsoft 365 services,
+              cybersecurity, cloud solutions and responsive technical support across London,
+              Slough, Berkshire and the wider UK.
             </p>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <a
-                href="#contact"
-                className="rounded-2xl bg-cyan-400 px-6 py-4 text-center font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:scale-[1.02]"
+            <p className="mt-5 max-w-3xl text-base leading-7 text-slate-300">
+              We help organisations reduce downtime, strengthen security and modernise
+              infrastructure with dependable day-to-day support, strategic guidance and scalable
+              cloud-first IT services.
+            </p>
+
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <Link
+                to="/contact-us"
+                className="rounded-2xl bg-cyan-300 px-6 py-4 text-center font-semibold text-slate-950 shadow-[0_18px_60px_rgba(34,211,238,0.28)] transition hover:-translate-y-0.5 hover:bg-cyan-200"
               >
-                Get a Free IT Audit
-              </a>
+                Book a Free IT Consultation
+              </Link>
               <a
                 href="#services"
-                className="rounded-2xl border border-white/15 px-6 py-4 text-center font-semibold text-white transition hover:border-white/30 hover:bg-white/5"
+                className="rounded-2xl border border-white/15 bg-white/[0.05] px-6 py-4 text-center font-semibold text-white backdrop-blur-sm transition hover:border-cyan-300/40 hover:bg-white/[0.08]"
               >
-                Explore Our Services
+                Explore Our IT Services
               </a>
+            </div>
+
+            <div className="mt-14 grid max-w-6xl gap-8 sm:grid-cols-2 xl:grid-cols-4">
+              {[
+                ["20+", "Years supporting businesses, schools and growing organisations"],
+                ["98%", "Client satisfaction focus across managed IT support services"],
+                ["24/7", "Monitoring and responsive support for critical business systems"],
+                ["4.9/5", "Average review rating"],
+              ].map(([value, label]) => (
+                <div key={label} className="border-l-4 border-cyan-300/80 pl-5">
+                  <div className="text-5xl font-semibold leading-none text-cyan-200 md:text-6xl">
+                    {value}
+                  </div>
+                  <div className="mt-4 max-w-xs text-base leading-7 text-slate-200">{label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -232,32 +293,46 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
+        <div className="mt-12 grid gap-8 md:grid-cols-2">
           {serviceCategories.map((category) => (
             <div
               key={category.title}
-              className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6 transition hover:border-cyan-400/40 hover:bg-white/[0.05]"
+              className="group overflow-hidden rounded-[1.9rem] border border-white/10 bg-white/[0.03] transition hover:-translate-y-1 hover:border-cyan-400/40 hover:bg-white/[0.05]"
             >
-              <h3 className="text-2xl font-semibold">{category.title}</h3>
-              <p className="mt-4 leading-7 text-slate-400">{category.description}</p>
+              <div className="relative h-56 overflow-hidden">
+                <img
+                  src={category.image}
+                  alt={category.title}
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                <div className="absolute left-5 top-5 rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-cyan-200 backdrop-blur-sm">
+                  Our Services
+                </div>
+              </div>
 
-              <ul className="mt-5 space-y-3 text-slate-300">
-                {category.items.map((item) => (
-                  <li
-                    key={item}
-                    className="border-b border-white/5 pb-3 last:border-b-0 last:pb-0"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <div className="p-6">
+                <h3 className="text-2xl font-semibold">{category.title}</h3>
+                <p className="mt-4 leading-7 text-slate-400">{category.description}</p>
 
-              <Link
-                to={category.link}
-                className="mt-6 inline-flex text-sm font-semibold text-cyan-300 transition hover:text-cyan-200"
-              >
-                Learn more
-              </Link>
+                <ul className="mt-6 grid gap-3 text-sm text-slate-300 sm:grid-cols-2">
+                  {category.items.map((item) => (
+                    <li
+                      key={item}
+                      className="rounded-xl border border-white/8 bg-slate-900/60 px-4 py-3"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  to={category.link}
+                  className="mt-6 inline-flex text-sm font-semibold text-cyan-300 transition hover:text-cyan-200"
+                >
+                  Learn more
+                </Link>
+              </div>
             </div>
           ))}
         </div>
@@ -356,7 +431,7 @@ export default function HomePage() {
                 key={testimonial.name + testimonial.company}
                 className="rounded-[1.75rem] border border-white/10 bg-slate-900/70 p-6"
               >
-                <p className="leading-7 text-slate-200">“{testimonial.quote}”</p>
+                <p className="leading-7 text-slate-200">"{testimonial.quote}"</p>
                 <div className="mt-6 border-t border-white/10 pt-4">
                   <div className="font-semibold">{testimonial.name}</div>
                   <div className="text-sm text-slate-400">{testimonial.company}</div>
@@ -430,6 +505,8 @@ export default function HomePage() {
             </p>
 
             <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+              <input type="hidden" name="botcheck" className="hidden" />
+
               <div>
                 <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-200">
                   Name
@@ -443,25 +520,6 @@ export default function HomePage() {
                   required
                   className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400/60"
                   placeholder="Your full name"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="jobRole"
-                  className="mb-2 block text-sm font-medium text-slate-200"
-                >
-                  Job Role
-                </label>
-                <input
-                  id="jobRole"
-                  name="jobRole"
-                  type="text"
-                  value={formData.jobRole}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400/60"
-                  placeholder="Your job title"
                 />
               </div>
 
@@ -509,7 +567,6 @@ export default function HomePage() {
                   name="comment"
                   value={formData.comment}
                   onChange={handleInputChange}
-                  required
                   rows={5}
                   className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400/60"
                   placeholder="Tell us about your requirements"
@@ -518,9 +575,10 @@ export default function HomePage() {
 
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="w-full rounded-2xl bg-cyan-400 px-6 py-4 text-center font-semibold text-slate-950 transition hover:scale-[1.01]"
               >
-                Submit
+                {isSubmitting ? "Sending..." : "Submit"}
               </button>
 
               {formStatus ? (

@@ -1,6 +1,15 @@
+import { Helmet } from "react-helmet-async";
+
 export default function MicrosoftIntunePage() {
     return (
       <section className="mx-auto max-w-6xl px-6 py-20">
+        <Helmet>
+          <title>Microsoft 365, Azure & Intune Support in the UK | Centcom Systems</title>
+          <meta
+            name="description"
+            content="Expert Microsoft 365, Azure and Intune support in London, Slough and across the UK for businesses, schools and multi-site organisations."
+          />
+        </Helmet>
         <div className="max-w-4xl">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
             Microsoft Cloud & Modern Workplace
