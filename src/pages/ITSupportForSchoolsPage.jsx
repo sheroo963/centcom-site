@@ -9,6 +9,8 @@ export default function ITSupportForSchoolsPage() {
             name="description"
             content="IT support for schools, academies and trusts, including Microsoft Intune, safeguarding-aware infrastructure, networking and cloud services."
           />
+          <link rel="canonical" href="https://www.centcom.co.uk/it-support-for-schools" />
+          <meta property="og:url" content="https://www.centcom.co.uk/it-support-for-schools" />
         </Helmet>
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">Sector</p>
         <h1 className="mt-3 text-4xl font-bold">IT Support for Schools & Academies</h1>

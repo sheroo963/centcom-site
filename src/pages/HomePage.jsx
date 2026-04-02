@@ -212,6 +212,8 @@ export default function HomePage() {
           name="description"
           content="Centcom Systems provides managed IT support in London, Slough and Berkshire, including Microsoft 365, Azure, Intune, cybersecurity, cloud services and support for businesses and schools."
         />
+        <link rel="canonical" href="https://www.centcom.co.uk/" />
+        <meta property="og:url" content="https://www.centcom.co.uk/" />
       </Helmet>
 
       <section id="home" className="relative overflow-hidden border-b border-white/10">

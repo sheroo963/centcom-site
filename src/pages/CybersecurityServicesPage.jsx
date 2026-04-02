@@ -9,6 +9,8 @@ export default function CybersecurityServicesPage() {
           name="description"
           content="Cybersecurity and compliance services in London, Slough and the UK, including Cyber Essentials support, Microsoft security, risk reduction and security best practices."
         />
+        <link rel="canonical" href="https://www.centcom.co.uk/cybersecurity-services" />
+        <meta property="og:url" content="https://www.centcom.co.uk/cybersecurity-services" />
       </Helmet>
 
       <div className="max-w-4xl">

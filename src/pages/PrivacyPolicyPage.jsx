@@ -67,6 +67,8 @@ export default function PrivacyPolicyPage() {
           name="description"
           content="Read the Centcom Systems Privacy Policy to understand how we handle personal information, data protection, retention and privacy-related requests."
         />
+        <link rel="canonical" href="https://www.centcom.co.uk/privacy-policy" />
+        <meta property="og:url" content="https://www.centcom.co.uk/privacy-policy" />
       </Helmet>
       <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 md:p-10">
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">

@@ -58,6 +58,8 @@ export default function ContactUsPage() {
           name="description"
           content="Contact Centcom Systems for managed IT support, Microsoft 365, cybersecurity and cloud services in London, Slough, Berkshire and across the UK."
         />
+        <link rel="canonical" href="https://www.centcom.co.uk/contact-us" />
+        <meta property="og:url" content="https://www.centcom.co.uk/contact-us" />
       </Helmet>
 
       <div className="max-w-3xl">

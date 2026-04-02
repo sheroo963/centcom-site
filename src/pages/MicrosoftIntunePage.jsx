@@ -9,6 +9,8 @@ export default function MicrosoftIntunePage() {
             name="description"
             content="Expert Microsoft 365, Azure and Intune support in London, Slough and across the UK for businesses, schools and multi-site organisations."
           />
+          <link rel="canonical" href="https://www.centcom.co.uk/microsoft-intune-support" />
+          <meta property="og:url" content="https://www.centcom.co.uk/microsoft-intune-support" />
         </Helmet>
         <div className="max-w-4xl">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">

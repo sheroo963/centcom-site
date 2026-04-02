@@ -2,23 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://centcom.co.uk/</loc>
+    <loc>https://www.centcom.co.uk/</loc>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://centcom.co.uk/managed-it-support</loc>
+    <loc>https://www.centcom.co.uk/managed-it-support</loc>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://centcom.co.uk/it-support-for-schools</loc>
+    <loc>https://www.centcom.co.uk/contact-us</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.centcom.co.uk/cybersecurity-services</loc>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://centcom.co.uk/microsoft-intune-support</loc>
+    <loc>https://www.centcom.co.uk/it-support-for-schools</loc>
     <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.centcom.co.uk/microsoft-intune-support</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.centcom.co.uk/privacy-policy</loc>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.centcom.co.uk/terms-of-website</loc>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.centcom.co.uk/cookie-policy</loc>
+    <priority>0.3</priority>
   </url>
 
 </urlset>

@@ -9,6 +9,8 @@ export default function ManagedITSupportPage() {
             name="description"
             content="Reliable managed IT support in London, Slough and across the UK for businesses, schools and multi-site organisations, including cloud, infrastructure and security support."
           />
+          <link rel="canonical" href="https://www.centcom.co.uk/managed-it-support" />
+          <meta property="og:url" content="https://www.centcom.co.uk/managed-it-support" />
         </Helmet>
         <div className="max-w-4xl">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">

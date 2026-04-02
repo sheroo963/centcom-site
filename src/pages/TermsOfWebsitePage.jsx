@@ -78,6 +78,8 @@ export default function TermsOfWebsitePage() {
           name="description"
           content="Read the Centcom Systems Terms of Website covering use of this website, intellectual property, liability, site availability and governing law."
         />
+        <link rel="canonical" href="https://www.centcom.co.uk/terms-of-website" />
+        <meta property="og:url" content="https://www.centcom.co.uk/terms-of-website" />
       </Helmet>
       <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 md:p-10">
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
